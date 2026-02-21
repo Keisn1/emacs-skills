@@ -33,3 +33,11 @@ claude plugin add --url https://github.com/xenodium/emacs-skills
 ```
 
 Or copy individual skill directories into your project's `.claude/skills/` or `~/.claude/skills/`.
+
+## Uninstall
+
+```sh
+claude plugin remove --url https://github.com/xenodium/emacs-skills
+```
+
+Or remove the skill directories from `.claude/skills/` or `~/.claude/skills/`.
