@@ -19,6 +19,10 @@ Open files from the latest agent interaction in Emacs buffers via `emacsclient`.
 
 Open a file in Emacs and select the region most relevant to the current discussion. Ready to act on immediately: narrow, copy, refactor, etc.
 
+### /highlight
+
+Highlight relevant regions in a file in Emacs with a temporary read-only minor mode. Press `q` to exit and remove highlights.
+
 ### /compile
 
 Run a command in an Emacs `*compilation*` buffer via `emacsclient` instead of in the terminal. Errors and warnings become clickable for easy navigation.

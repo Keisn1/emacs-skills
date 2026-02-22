@@ -17,6 +17,7 @@
       "skills": [
         "./skills/compile",
         "./skills/dired",
+        "./skills/highlight",
         "./skills/open",
         "./skills/select"
       ]
