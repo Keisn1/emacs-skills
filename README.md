@@ -27,6 +27,10 @@ Open a file in Emacs and select the region most relevant to the current discussi
 
 Highlight relevant regions in a file in Emacs with a temporary read-only minor mode. Press `q` to exit and remove highlights.
 
+### /describe
+
+Look up Emacs documentation using the appropriate mechanism: `describe-function`, `describe-variable`, `describe-key`, `describe-symbol`, `apropos`, `apropos-documentation`, `info`, or `shortdoc`.
+
 ### /compile
 
 Run a command in an Emacs `*compilation*` buffer via `emacsclient` instead of in the terminal. Errors and warnings become clickable for easy navigation.
