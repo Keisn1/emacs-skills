@@ -15,7 +15,10 @@
       "source": "./",
       "strict": false,
       "skills": [
-        "./skills/dired"
+        "./skills/compile",
+        "./skills/dired",
+        "./skills/open",
+        "./skills/select"
       ]
     }
   ]
