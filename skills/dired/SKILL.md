@@ -11,40 +11,25 @@ Open files from the most recent interaction in an Emacs dired buffer using `emac
 
 ## Strategy
 
-Determine whether the relevant files all reside in the same directory or span multiple directories, then use the appropriate approach.
+Determine whether the relevant files all reside in the same directory or span multiple directories, then call `agent-skill-dired` accordingly.
 
-### Same directory
+- **Same directory**: `:dir` is the directory, `:files` are basenames. Opens dired at that directory with the files marked in context.
+- **Multiple directories**: `:dir` is the common ancestor, `:files` are relative paths. Creates a curated `*agent-files*` buffer with all files marked.
 
-When all files share the same parent directory, open dired at that directory and mark the specific files. This shows them in context alongside sibling files.
+First, locate `agent-skill-dired.el` which lives alongside this skill file at `skills/dired/agent-skill-dired.el` in the emacs-skills plugin directory.
 
 ```sh
 emacsclient --eval '
 (progn
-  (dired "/path/to/directory")
-  (dired-unmark-all-marks)
-  (dolist (file (quote ("file1.txt" "file2.txt")))
-    (dired-goto-file (expand-file-name file "/path/to/directory"))
-    (dired-mark 1)))'
-```
-
-### Multiple directories
-
-When files span different directories, create a curated dired buffer containing only the relevant files. Use the cons cell form of `dired` where the first element is the buffer name and the rest are relative file paths. Set `default-directory` to the common ancestor directory so relative paths resolve correctly.
-
-```sh
-emacsclient --eval '
-(let ((default-directory "/common/ancestor/"))
-  (dired (quote ("*agent-files*"
-                 "relative/path/file1.txt"
-                 "other/path/file2.txt")))
-  (dired-unmark-all-marks)
-  (dired-toggle-marks))'
+  (load "/path/to/skills/dired/agent-skill-dired.el" nil t)
+  (agent-skill-dired
+    :dir "/path/to/directory"
+    :files (quote ("file1.txt" "file2.txt"))))'
 ```
 
 ## Rules
 
-- Set `default-directory` to the appropriate base directory and use relative paths.
-- For the same-directory case, use `dired-goto-file` with `expand-file-name` to ensure reliable matching.
-- For the multi-directory case, name the buffer `*agent-files*`.
-- If no relevant files exist in the recent interaction, inform the user that there are no files to open.
+- Use relative paths in `:files` relative to `:dir`.
+- Locate `agent-skill-dired.el` relative to this skill file's directory.
+- If no relevant files exist in the recent interaction, inform the user.
 - Run the `emacsclient --eval` command via the Bash tool.

@@ -7,36 +7,27 @@ disable-model-invocation: true
 
 # Open files in Emacs
 
-Open files from the most recent interaction in Emacs buffers using `emacsclient`. Only include files relevant to the latest interaction (files just generated, edited, listed, or produced by the most recent tool output), not all files mentioned throughout the conversation.
+Open files from the most recent interaction in Emacs buffers using `emacsclient --eval`. Only include files relevant to the latest interaction (files just generated, edited, listed, or produced by the most recent tool output), not all files mentioned throughout the conversation.
 
-## How to open files
+## How to open
 
-Use `emacsclient` to visit each file. Use `--no-wait` so the command returns immediately.
+First, locate `agent-skill-open.el` which lives alongside this skill file at `skills/open/agent-skill-open.el` in the emacs-skills plugin directory.
 
-### Single file
-
-```sh
-emacsclient --no-wait "/path/to/file.txt"
-```
-
-### Multiple files
+Each file spec in `:files` is either a string (file path) or a plist with `:file` and optional `:line`.
 
 ```sh
-emacsclient --no-wait "/path/to/file1.txt" "/path/to/file2.txt" "/path/to/file3.txt"
-```
-
-### Opening at a specific line
-
-If a specific line number is relevant (e.g., an error location or a newly added function), use the `+LINE` syntax:
-
-```sh
-emacsclient --no-wait +42 "/path/to/file.txt"
+emacsclient --eval '
+(progn
+  (load "/path/to/skills/open/agent-skill-open.el" nil t)
+  (agent-skill-open
+    :files (quote ((:file "/path/to/file1.txt" :line 42)
+                   "/path/to/file2.txt"))))'
 ```
 
 ## Rules
 
-- Use absolute paths for all files.
-- Use `--no-wait` so the command returns immediately.
-- If a specific line is relevant, use the `+LINE` syntax to jump to it.
-- If no relevant files exist in the recent interaction, inform the user that there are no files to open.
-- Run the `emacsclient` command via the Bash tool.
+- Use absolute paths for files.
+- Use `:line` when a specific line is relevant (e.g., an error location or a newly added function).
+- Locate `agent-skill-open.el` relative to this skill file's directory.
+- If no relevant files exist in the recent interaction, inform the user.
+- Run the `emacsclient --eval` command via the Bash tool.

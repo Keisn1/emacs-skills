@@ -13,16 +13,20 @@ Use whatever command is relevant from the current context. If the user provides 
 
 ## How to run
 
-Set `default-directory` to the project root so relative paths in error output resolve correctly.
+First, locate `agent-skill-compile.el` which lives alongside this skill file at `skills/compile/agent-skill-compile.el` in the emacs-skills plugin directory.
 
 ```sh
 emacsclient --eval '
-(let ((default-directory "/path/to/project/"))
-  (compile "the-command"))'
+(progn
+  (load "/path/to/skills/compile/agent-skill-compile.el" nil t)
+  (agent-skill-compile
+    :dir "/path/to/project"
+    :command "make"))'
 ```
 
 ## Rules
 
-- Set `default-directory` to the project root.
+- Set `:dir` to the project root.
 - If no command is apparent from context and the user didn't specify one, ask the user what to run.
+- Locate `agent-skill-compile.el` relative to this skill file's directory.
 - Run the `emacsclient --eval` command via the Bash tool.

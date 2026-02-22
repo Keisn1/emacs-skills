@@ -13,24 +13,26 @@ Determine the relevant file and line range from the most recent interaction cont
 
 ## How to select
 
+First, locate `agent-skill-select.el` which lives alongside this skill file at `skills/select/agent-skill-select.el` in the emacs-skills plugin directory.
+
 ```sh
 emacsclient --eval '
 (progn
-  (find-file "/path/to/file")
-  (goto-char (point-min))
-  (forward-line (1- START_LINE))
-  (set-mark (point))
-  (forward-line (- END_LINE START_LINE))
-  (end-of-line)
-  (activate-mark))'
+  (load "/path/to/skills/select/agent-skill-select.el" nil t)
+  (agent-skill-select
+    :file "/path/to/file"
+    :start 10
+    :end 25))'
 ```
 
-Replace `START_LINE` and `END_LINE` with the appropriate line numbers.
+- `:start` is the 1-indexed start line.
+- `:end` is the 1-indexed end line.
 
 ## Rules
 
 - Use absolute paths for files.
-- Choose the region that is most relevant to the current discussion (e.g., a function just modified, a block with an error, code just generated).
+- Choose the region most relevant to the current discussion (e.g., a function just modified, a block with an error, code just generated).
 - If no specific region is apparent, select the entire relevant function or block.
+- Locate `agent-skill-select.el` relative to this skill file's directory.
 - If no relevant file or region exists in the recent interaction, inform the user.
 - Run the `emacsclient --eval` command via the Bash tool.
