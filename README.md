@@ -24,20 +24,15 @@ After an interaction that generates or references files:
 /dired
 ```
 
-## Installation
-
-Add this repository as a Claude Code plugin:
+## Install
 
 ```sh
-claude plugin add --url https://github.com/xenodium/emacs-skills
+claude plugin marketplace add xenodium/emacs-skills
+claude plugin install emacs-skills@xenodium-emacs-skills
 ```
-
-Or copy individual skill directories into your project's `.claude/skills/` or `~/.claude/skills/`.
 
 ## Uninstall
 
 ```sh
-claude plugin remove --url https://github.com/xenodium/emacs-skills
+claude plugin uninstall emacs-skills
 ```
-
-Or remove the skill directories from `.claude/skills/` or `~/.claude/skills/`.
