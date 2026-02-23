@@ -20,8 +20,10 @@ emacsclient --eval '
 (progn
   (load "/path/to/skills/open/agent-skill-open.el" nil t)
   (agent-skill-open
-    :files (quote ((:file "/path/to/file1.txt" :line 42)
-                   "/path/to/file2.txt"))))'
+    :files (quote ((:file "/path/to/file1.txt"
+                    :line 42)
+                   "/path/to/file2.txt"
+                   "/path/to/file3.txt"))))'
 ```
 
 ## Rules

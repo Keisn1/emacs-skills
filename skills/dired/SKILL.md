@@ -24,7 +24,9 @@ emacsclient --eval '
   (load "/path/to/skills/dired/agent-skill-dired.el" nil t)
   (agent-skill-dired
     :dir "/path/to/directory"
-    :files (quote ("file1.txt" "file2.txt"))))'
+    :files (quote ("file1.txt"
+                   "file2.txt"
+                   "file3.txt"))))'
 ```
 
 ## Rules

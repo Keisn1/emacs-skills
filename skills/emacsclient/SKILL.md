@@ -19,4 +19,5 @@ The user has an Emacs server running. When asked to do something in Emacs (open 
 - Always use `emacsclient`, never `emacs`.
 - Use `--no-wait` when opening files so the command returns immediately.
 - Use `--eval` when evaluating elisp.
+- Always format `--eval` elisp across multiple lines with proper indentation.
 - Run `emacsclient` commands via the Bash tool.
