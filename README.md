@@ -35,10 +35,6 @@ Look up Emacs documentation using the appropriate mechanism: `describe-function`
 
 Always prefer `emacsclient` over `emacs` when the agent needs to interact with Emacs. This skill is not a slash command; it activates automatically.
 
-### /compile
-
-Run a command in an Emacs `*compilation*` buffer via `emacsclient` instead of in the terminal. Errors and warnings become clickable for easy navigation.
-
 ## Requirements
 
 - Emacs running a server (`M-x server-start` or `(server-start)` in your init file)

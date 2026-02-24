@@ -15,7 +15,6 @@
       "source": "./",
       "strict": false,
       "skills": [
-        "./skills/compile",
         "./skills/describe",
         "./skills/dired",
         "./skills/emacsclient",
