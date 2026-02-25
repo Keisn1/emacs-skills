@@ -27,6 +27,19 @@ Without a line number:
 [filename.el](relative/path/to/filename.el)
 ```
 
+## Important
+
+- The link text uses `:` for line numbers (e.g., `filename.el:42`).
+- The URL uses `#L` for line numbers (e.g., `filename.el#L42`).
+- For ranges, the link text uses `-` (e.g., `filename.el:42-50`) and the URL uses `-L` (e.g., `filename.el#L42-L50`).
+- The range must appear in both the link text and the URL.
+
+Do NOT do this:
+
+```
+[filename.el#L42-L50](filename.el#L42)
+```
+
 ## Rules
 
 - Use paths relative to the project root.
