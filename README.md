@@ -31,6 +31,22 @@ Highlight relevant regions in a file in Emacs with a temporary read-only minor m
 
 Look up Emacs documentation using the appropriate mechanism: `describe-function`, `describe-variable`, `describe-key`, `describe-symbol`, `apropos`, `apropos-documentation`, `info`, or `shortdoc`.
 
+### /gnuplot
+
+Plot data from the current context using gnuplot. Queries the Emacs foreground color and generates a transparent PNG that renders inline.
+
+### /plantuml
+
+Create diagrams from the current context using PlantUML. Applies the Emacs foreground color via `skinparam` for readable text on your Emacs background.
+
+### /d2
+
+Create diagrams from the current context using D2. Uses the dark theme with the Emacs foreground color applied to nodes and edges.
+
+### /mermaid
+
+Create diagrams from the current context using Mermaid. Applies the Emacs foreground color via theme variable overrides for readable text on your Emacs background.
+
 ### emacsclient (auto)
 
 Always prefer `emacsclient` over `emacs` when the agent needs to interact with Emacs. This skill is not a slash command; it activates automatically.
