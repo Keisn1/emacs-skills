@@ -12,12 +12,12 @@ Plot data from the most recent interaction context using gnuplot. Generate a PNG
 ## How to plot
 
 1. Extract or derive plottable data from the current context.
-2. Query the Emacs foreground color:
+2. If the Emacs foreground color is not already known from a previous plot in this session, query it:
    ```sh
    emacsclient --eval '
    (face-foreground (quote default))'
    ```
-   This returns a hex color like `"#eeffff"`.
+   This returns a hex color like `"#eeffff"`. Reuse it for all subsequent plots.
 3. Write a gnuplot script to a temporary file using that color.
 4. Run gnuplot on the script.
 5. Output the result as a markdown image on its own line:
@@ -49,7 +49,7 @@ set ytics textcolor rgb FG
 
 ## Rules
 
-- Always query the Emacs foreground color first and use it for all text, borders, and tics.
+- Query the Emacs foreground color once per session and reuse it for all subsequent plots. Only query again if the color is not already known.
 - Always use `pngcairo transparent` terminal for transparent background.
 - Use a unique filename under `/tmp/` (e.g., `/tmp/agent-plot-<timestamp>.png`).
 - Use inline data (`$DATA << EOD ... EOD`) when practical. For large datasets, write a separate data file.
